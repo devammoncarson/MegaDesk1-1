@@ -11,6 +11,7 @@ namespace MegaDesk_4_AmmonCarson
 
         public string CustomerName { get; set; }
         public DateTime QuoteDate { get; set; }
+        public decimal Quote { get; set; }
 
         public decimal finalQuote { get; set; }
         public decimal drawersCost { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,15 +17,64 @@ namespace MegaDesk_4_AmmonCarson
         {
             InitializeComponent();
             //populate materials combobox
-            // var materials = new List<Desk.Material>();
             var materials = Enum.GetValues(typeof(Desk.SurfaceMaterial))
                 .Cast<Desk.SurfaceMaterial>()
                 .ToList();
 
             comboBoxMaterial.DataSource = materials;
-
-            //set default to empty
             comboBoxMaterial.SelectedIndex = -1;
+
+            //populate shipping days combobox
+            var shippingDays = Enum.GetValues(typeof(DeskQuote.ShippingDays))
+                .Cast<DeskQuote.ShippingDays>()
+                .ToList();
+
+            comboBoxShipping.DataSource = shippingDays;
+            comboBoxShipping.SelectedIndex = -1;
+        }
+
+        private void btnSubmitQuote_Click(object sender, EventArgs e)
+        {
+            var desk = new Desk();
+            var deskQuote = new DeskQuote();
+            try
+            {
+                desk.Depth = numDepth.Value;
+                desk.Width = numWidth.Value;
+                desk.NumDrawers = (int)numDrawers.Value;
+                desk.Material = (Desk.SurfaceMaterial)comboBoxMaterial.SelectedItem;
+
+                deskQuote.Desk = desk;
+                deskQuote.CustomerName = textCustomerName.Text;
+                deskQuote.ShippingRush = (DeskQuote.ShippingDays)comboBoxShipping.SelectedItem;
+
+                deskQuote.QuoteDate = DateTime.Now;
+                deskQuote.Quote = deskQuote.getQuote();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was an error compiling the quote, {0}", ex.Message);
+            }
+
+            string quotesFile = @"quotes.txt";
+
+            using (StreamWriter streamwriter = File.AppendText(quotesFile))
+            {
+                streamwriter.WriteLine(
+                $"{deskQuote.CustomerName}, " +
+                $"{deskQuote.QuoteDate}, " +
+                $"{deskQuote.Desk.Depth}, " +
+                $"{deskQuote.Desk.Width}, " +
+                $"{deskQuote.Desk.NumDrawers}, " +
+                $"{deskQuote.Desk.Material}, " +
+                $"{deskQuote.ShippingRush}, " +
+                $"{deskQuote.Quote}");
+            }
+
+            var mainMenu = (MainMenu)Tag;
+            mainMenu.Show();
+            Close();
+
         }
 
         private void AddQuote_Load(object sender, EventArgs e)
@@ -49,17 +99,7 @@ namespace MegaDesk_4_AmmonCarson
 
         }
 
-        private void btnSubmitQuote_Click(object sender, EventArgs e)
-        {
-            var Desk = new Desk()
-            {
-                Depth = numDepth.Value,
-                Width = numWidth.Value,
-                NumDrawers = (int)numDrawers.Value,
-                Material = (Desk.SurfaceMaterial)comboBoxMaterial.SelectedItem
-            };
-
-        }
+        
 
         private void label1_Click(object sender, EventArgs e)
         {

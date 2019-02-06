@@ -30,6 +30,14 @@
         {
             this.btnExit = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Width = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Depth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumDrawers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SurfaceMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShippingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,12 +53,66 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(112, 24);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustomerName,
+            this.DateTime,
+            this.Width,
+            this.Depth,
+            this.NumDrawers,
+            this.SurfaceMaterial,
+            this.ShippingDays,
+            this.QuoteCost});
+            this.dataGridView1.Location = new System.Drawing.Point(0, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(799, 344);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "Customer Name";
+            this.CustomerName.Name = "CustomerName";
+            // 
+            // DateTime
+            // 
+            this.DateTime.HeaderText = "Date & Time";
+            this.DateTime.Name = "DateTime";
+            this.DateTime.Width = 125;
+            // 
+            // Width
+            // 
+            this.Width.HeaderText = "Width";
+            this.Width.Name = "Width";
+            this.Width.Width = 75;
+            // 
+            // Depth
+            // 
+            this.Depth.HeaderText = "Depth";
+            this.Depth.Name = "Depth";
+            this.Depth.Width = 75;
+            // 
+            // NumDrawers
+            // 
+            this.NumDrawers.HeaderText = "Drawers";
+            this.NumDrawers.Name = "NumDrawers";
+            // 
+            // SurfaceMaterial
+            // 
+            this.SurfaceMaterial.HeaderText = "Surface Material";
+            this.SurfaceMaterial.Name = "SurfaceMaterial";
+            // 
+            // ShippingDays
+            // 
+            this.ShippingDays.HeaderText = "Shipping Days";
+            this.ShippingDays.Name = "ShippingDays";
+            // 
+            // QuoteCost
+            // 
+            this.QuoteCost.HeaderText = "Quote Cost";
+            this.QuoteCost.Name = "QuoteCost";
+            this.QuoteCost.Width = 75;
             // 
             // ViewAllQuotes
             // 
@@ -70,5 +132,13 @@
 
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Width;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Depth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumDrawers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SurfaceMaterial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShippingDays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuoteCost;
     }
 }
